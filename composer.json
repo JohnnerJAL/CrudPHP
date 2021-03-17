@@ -1,0 +1,10 @@
+{
+  "require": {
+    "illuminate/database": "^8.33",
+    "laminas/laminas-diactoros": "^2.5",
+    "middlewares/aura-router": "^2.0",
+    "middlewares/request-handler": "^2.0",
+    "twig/twig": "^3.3",
+    "relay/relay": "2.x@dev"
+  }
+}

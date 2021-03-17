@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+  <link rel="stylesheet" href="./index.css">
+  <title>CRUD PHP libraries</title>
+</head>
+<body>
+  <main>
+    <section class="form">
+      <form action="/CrudPHP/add" method="post">
+        <label for="">
+          <span>Name</span>
+          <input type="text" placeholder="Name" name="name">
+        </label>
+        <label for="">
+          <span>Tel</span>
+          <input type="text" placeholder="Tel" name="tel">
+        </label>
+        <button type="submit">Register</button>
+      </form>
+    </section>
+    <section class="section-records">
+      <ul>
+        {% for user in users %}
+        <li class="row">
+          <span
+            {% if user.done %} style="text-decoration: line-through;" {% endif %}
+          >
+            {{ user.name }} 
+          </span>
+          <span
+            {% if user.done %} style="text-decoration: line-through;" {% endif %}
+          >
+            {{ user.tel }}
+          </span>
+          <span>
+            {% if user.done %}
+            <a href="/CrudPHP/uncheck/{{ user.id }}"><i class="far fa-check-square" style="color:green;" ></i></a>
+            {% else %}
+            <a href="/CrudPHP/check/{{ user.id }}"><i class="far fa-square" style="color:black;" ></i></a>
+            {% endif %}
+            <a href="/CrudPHP/delete/{{ user.id }}"><i class="fas fa-trash-alt" style="color:red;" ></i></a>
+          </span>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

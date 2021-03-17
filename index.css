@@ -1,0 +1,54 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
+  border: solid cyan;
+}
+
+.form label {
+  margin: auto;
+  /* border: solid red; */
+  padding: 4px;
+}
+
+.form label input {
+  border: none;
+  border-bottom: solid dodgerblue;
+}
+
+.form form button {
+  margin: auto;
+  padding: 5px;
+  border-radius: 8px;
+  background-color: dodgerblue;
+  margin-top: 20px;
+}
+
+/*------------------Records-----------------*/
+.section-records {
+  border: solid blue;
+}
+
+.section-records ul {
+  border: solid orange;
+}
+
+.section-records ul li.row {
+  border: solid red;
+  display: flex;
+  justify-content: space-between;
+}
+
+.section-records ul li.row span {
+  border: solid blue;
+  width: 30%;
+}
