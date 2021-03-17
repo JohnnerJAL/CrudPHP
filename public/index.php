@@ -1,7 +1,15 @@
 <?php
 
-require_once "vendor/autoload.php";
-require_once "User.php";
+require_once "../vendor/autoload.php";
+// require_once "../views/template.twig";
+
+
+require_once "../App/Models/Player.php";
+use App\Models\Player;
+
+// require_once "../views/template.twig";
+// require_once "template.twig";
+
 
 use Aura\Router\RouterContainer;
 use Laminas\Diactoros\Response\HtmlResponse;
@@ -16,7 +24,7 @@ $capsule = new Capsule;
 $capsule->addConnection([
     'driver'    => 'mysql',
     'host'      => 'localhost',
-    'database'  => 'SuperBase',
+    'database'  => 'torneo',
     'username'  => 'root',
     'password'  => '',
     'charset'   => 'utf8',
@@ -39,7 +47,7 @@ $request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
 );
 
 /*Template engine--------------------------------------------*/
-$loader = new \Twig\Loader\FilesystemLoader('.');
+$loader = new \Twig\Loader\FilesystemLoader('../views');
 $twig = new \Twig\Environment($loader, [
   "debug" => true,
   "cache" => false
@@ -48,43 +56,45 @@ $twig = new \Twig\Environment($loader, [
 /*Router-----------------------------------------------------*/
 $router = new RouterContainer();
 $map = $router->getMap();
-$map->get('SuperBase.list', '/CrudPHP/index.php', function ($request) use ($twig) {
-    $users = User::all();
+$map->get('torneo.list', '/CrudPHP/index.php', function ($request) use ($twig) {
+    $players = Player::all();
     $response = new HtmlResponse($twig->render('template.twig', [
-        'users' => $users
+        'players' => $players
     ]));
     return $response;
 });
-$map->post('SuperBase.add', '/CrudPHP/add', function ($request) {
+$map->post('torneo.add', '/CrudPHP/add', function ($request) {
   $data = $request->getParsedBody();
-  $user = new User();
-  $user->name = $data["name"];
-  $user->tel = $data["tel"];
-  $user->save();
+  $player = new Player();
+  $player->name = $data["name"];
+  $player->tel = $data["tel"];
+  $player->save();
   $response = new RedirectResponse("/CrudPHP/index.php");
   return $response;
 });
 /*Check------------------*/
-$map->get('SuperBase.check', '/CrudPHP/check/{id}', function ($request) {
+$map->get('torneo.check', '/CrudPHP/check/{id}', function ($request) {
   $id = $request->getAttribute("id");
-  $user = User::find($id);
-  $user->done = true;
-  $user->save();
+  $player = Player::find($id);
+  $player->done = true;
+  $player->save();
   $response = new RedirectResponse("/CrudPHP/index.php");
   return $response;
 });
-$map->get('SuperBase.uncheck', '/CrudPHP/uncheck/{id}', function ($request) {
+$map->get('torneo.uncheck', '/CrudPHP/uncheck/{id}', function ($request) {
   $id = $request->getAttribute("id");
-  $user = User::find($id);
-  $user->done = false;
-  $user->save();
+  $player = Player::find($id);
+  $player->done = false;
+  $player->save();
   $response = new RedirectResponse("/CrudPHP/index.php");
   return $response;
 });
-$map->get('SuperBase.delete', '/CrudPHP/delete/{id}', function ($request) {
+
+/*-----------------EndCheck*/
+$map->get('torneo.delete', '/CrudPHP/delete/{id}', function ($request) {
   $id = $request->getAttribute("id");
-  $user = User::find($id);
-  $user->delete();
+  $player = Player::find($id);
+  $player->delete();
   $response = new RedirectResponse("/CrudPHP/index.php");
   return $response;
 });
