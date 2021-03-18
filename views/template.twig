@@ -10,57 +10,7 @@
 </head>
 <body>
   <main>
-    <section class="form">
-      <form action="/CrudPHP/add" method="post">
-        <label for="">
-          <span>Name</span>
-          <input type="text" placeholder="Name" name="name">
-        </label>
-        <label for="">
-          <span>Tel</span>
-          <input type="text" placeholder="Tel" name="tel">
-        </label>
-        <button type="submit">Register</button>
-      </form>
-    </section>
-    <section class="section-records">
-      <h2>Table Player_in_out</h2>
-      <ul>
-        <li class="row">
-          <span>id</span>
-          <span>match_no</span>
-          <span>team_id</span>
-          <span>player_id</span>
-          <span>in_out</span>
-          <span>time_in_out</span>
-          <span>play_schedule</span>
-          <span>play_half</span>
-          <span>Check & delete</span>
-        </li>
-        
-        {% for player in players %}
-        <li class="row">
-          <span {% if player.done %} style="text-decoration: line-through;" {% endif %}>{{ player.id }}</span>
-          <span {% if player.done %} style="text-decoration: line-through;" {% endif %}>{{ player.match_no }}</span>
-          <span {% if player.done %} style="text-decoration: line-through;" {% endif %}>{{ player.team_id }}</span>
-          <span {% if player.done %} style="text-decoration: line-through;" {% endif %}>{{ player.player_id }}</span>
-          <span {% if player.done %} style="text-decoration: line-through;" {% endif %}>{{ player.in_out }}</span>
-          <span {% if player.done %} style="text-decoration: line-through;" {% endif %}>{{ player.time_in_out }}</span>
-          <span {% if player.done %} style="text-decoration: line-through;" {% endif %}>{{ player.play_schedule }}</span>
-          <span {% if player.done %} style="text-decoration: line-through;" {% endif %}>{{ player.play_half }}</span>
-          
-          <span>
-            {% if player.done %}
-            <a href="/CrudPHP/uncheck/{{ player.id }}"><i class="far fa-check-square" style="color:green;" ></i></a>
-            {% else %}
-            <a href="/CrudPHP/check/{{ player.id }}"><i class="far fa-square" style="color:black;" ></i></a>
-            {% endif %}
-            <a href="/CrudPHP/delete/{{ player.id }}"><i class="fas fa-trash-alt" style="color:red;" ></i></a>
-          </span>
-        </li>
-        {% endfor %}
-      </ul>
-    </section>
+  {% block content %}{% endblock %}
   </main>
 </body>
 </html>

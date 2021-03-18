@@ -35,7 +35,7 @@ body {
 
 /*------------------Records-----------------*/
 .section-records {
-  border: solid blue;
+  border: solid greenyellow;
 }
 
 .section-records ul {
@@ -49,6 +49,6 @@ body {
 }
 
 .section-records ul li.row span {
-  border: solid blue;
-  width: 20px;
+  border: solid green;
+  width: 40px;
 }

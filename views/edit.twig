@@ -1,0 +1,82 @@
+{% extends "template.twig" %}
+
+{% block content %}
+
+{% for row in rows %}
+<section class="form">
+  <form action="/CrudPHP/edited/{{ row.id }}" method="post">
+    <label for="">
+      <span>match_no</span>
+      <input type="text" placeholder="Match" name="match_no">
+    </label>
+    <label for="">
+      <span>team_id</span>
+      <input type="text" placeholder="Team" name="team_id">
+    </label>
+    <label for="">
+      <span>player_id</span>
+      <input type="text" placeholder="Player" name="player_id">
+    </label>
+    <label for="">
+      <span>in_out</span>
+      <input type="text" placeholder="In_out" name="in_out">
+    </label>
+    <label for="">
+      <span>time_in_out</span>
+      <input type="text" placeholder="Time_in_out" name="time_in_out">
+    </label>
+    <label for="">
+      <span>play_schedule</span>
+      <input type="text" placeholder="Schedule" name="play_schedule">
+    </label>
+    <label for="">
+      <span>play_half</span>
+      <input type="text" placeholder="play_half" name="play_half">
+    </label>
+    <button type="submit">Register</button>
+  </form>
+</section>
+
+<section class="section-records">
+  <h2>Row in Table Player_in_out</h2>
+  <ul>
+    <li class="row">
+      <span>id</span>
+      <span>match_no</span>
+      <span>team_id</span>
+      <span>player_id</span>
+      <span>in_out</span>
+      <span>time_in_out</span>
+      <span>play_schedule</span>
+      <span>play_half</span>
+      <span>Check & delete</span>
+    </li>
+        
+    <li class="row">
+      <span {% if row.done %} style="text-decoration: line-through;" {% endif %}>{{ row.id }}</span>
+      <span {% if row.done %} style="text-decoration: line-through;" {% endif %}>{{ row.match_no }}</span>
+      <span {% if row.done %} style="text-decoration: line-through;" {% endif %}>{{ row.team_id }}</span>
+      <span {% if row.done %} style="text-decoration: line-through;" {% endif %}>{{ row.player_id }}</span>
+      <span {% if row.done %} style="text-decoration: line-through;" {% endif %}>{{ row.in_out }}</span>
+      <span {% if row.done %} style="text-decoration: line-through;" {% endif %}>{{ row.time_in_out }}</span>
+      <span {% if row.done %} style="text-decoration: line-through;" {% endif %}>{{ row.play_schedule }}</span>
+      <span {% if row.done %} style="text-decoration: line-through;" {% endif %}>{{ row.play_half }}</span>
+          
+      <span>
+        {% if row.done %}
+        <a href="/CrudPHP/uncheck/{{ row.id }}"><i class="far fa-check-square" style="color:green;" ></i></a>
+        {% else %}
+        <a href="/CrudPHP/check/{{ row.id }}"><i class="far fa-square" style="color:black;" ></i></a>
+        {% endif %}
+
+        <a href="/CrudPHP/edit/{{ row.id }}"><i class="far fa-edit" style="color: blue;" ></i></a>
+        <a href="/CrudPHP/delete/{{ row.id }}"><i class="fas fa-trash-alt" style="color:red;" ></i></a>
+      </span>
+    </li>
+  </ul>
+</section>
+
+<a href="/CrudPHP/">Table Player_in_out</a>
+{% endfor %}
+
+{% endblock %}
